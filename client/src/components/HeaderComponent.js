@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./stylesheets/HeaderComponent.css";
 import {
   Navbar,
   Form,
@@ -34,9 +35,13 @@ function Registerer(props) {
   if (props.isSignedIn === false)
     return (
       <React.Fragment>
-        &nbsp;
-        <Button color="primary" outline onClick={props.toggleRegister}>
-          <span className="fa fa-user-plus fa-lg"></span> Register
+        &nbsp; &nbsp;
+        <Button
+          className="navigation-btn"
+          outline
+          onClick={props.toggleRegister}
+        >
+          Register <span className="fa fa-user-plus fa-lg"></span>
         </Button>
       </React.Fragment>
     );
@@ -98,145 +103,158 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar color="dark" dark expand="xl" fixed="top">
-          <div className="container">
-            <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
-            <NavbarBrand className="mr-auto text-primary" href="/home">
-              Central Library
-            </NavbarBrand>
-            <Collapse isOpen={this.state.isNavOpen} navbar>
-              <Nav navbar>
+        <Navbar dark expand="xl" className="navigator-class">
+          <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
+          <NavbarBrand className="mr-auto" href="/home">
+            <img
+              src="library-logo.jpg"
+              height={40}
+              alt=""
+              className="logo-class"
+            />
+          </NavbarBrand>
+          <Collapse isOpen={this.state.isNavOpen} navbar>
+            <Nav navbar>
+              <NavItem className="ml-2" onClick={this.toggleNav}>
+                <NavLink className="nav-link text-primary" to="/home">
+                  <span className="fa fa-home fa-lg" /> Home
+                </NavLink>
+              </NavItem>
+              <NavItem className="ml-2" onClick={this.toggleNav}>
+                <NavLink className="nav-link text-primary" to="/about">
+                  <span className="fa fa-info-circle fa-lg" /> About
+                </NavLink>
+              </NavItem>
+              {this.props.auth.userinfo && this.props.auth.userinfo.admin ? (
+                <NavItem className="">
+                  <Dropdown
+                    isOpen={this.state.dropdownOpen}
+                    toggle={this.toggle}
+                  >
+                    <DropdownToggle color="Primary">
+                      <div className="text-primary">
+                        <span className="fa fa-book fa-lg" /> Books &nbsp;{" "}
+                        <i
+                          className="fa fa-caret-down fa-sm"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem
+                        onClick={this.toggleNav}
+                        tag={Link}
+                        to="/books"
+                      >
+                        View / Modify books
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem
+                        onClick={this.toggleNav}
+                        tag={Link}
+                        to="/add_book"
+                      >
+                        Add book
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </NavItem>
+              ) : (
                 <NavItem className="ml-2" onClick={this.toggleNav}>
-                  <NavLink className="nav-link text-primary" to="/home">
-                    <span className="fa fa-home fa-lg" /> Home
+                  <NavLink className="nav-link text-primary" to="/books">
+                    <span className="fa fa-book fa-lg" /> Books
                   </NavLink>
                 </NavItem>
-                {this.props.auth.userinfo && this.props.auth.userinfo.admin ? (
-                  <NavItem className="">
-                    <Dropdown
-                      isOpen={this.state.dropdownOpen}
-                      toggle={this.toggle}
-                    >
-                      <DropdownToggle color="Primary">
-                        <div className="text-primary">
-                          <span className="fa fa-book fa-lg" /> Books &nbsp;{" "}
-                          <i
-                            className="fa fa-caret-down fa-sm"
-                            aria-hidden="true"
-                          ></i>
-                        </div>
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        <DropdownItem
-                          onClick={this.toggleNav}
-                          tag={Link}
-                          to="/books"
-                        >
-                          View / Modify books
-                        </DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem
-                          onClick={this.toggleNav}
-                          tag={Link}
-                          to="/add_book"
-                        >
-                          Add book
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown>
-                  </NavItem>
-                ) : (
-                  <NavItem className="ml-2" onClick={this.toggleNav}>
-                    <NavLink className="nav-link text-primary" to="/books">
-                      <span className="fa fa-book fa-lg" /> Books
-                    </NavLink>
-                  </NavItem>
-                )}
+              )}
 
-                <NavItem className="ml-2" onClick={this.toggleNav}>
-                  <NavLink className="nav-link text-primary" to="/search">
-                    <span className="fa fa-search fa-lg" /> Search
+              <NavItem className="ml-2" onClick={this.toggleNav}>
+                <NavLink className="nav-link text-primary" to="/search">
+                  <span className="fa fa-search fa-lg" /> Search
+                </NavLink>
+              </NavItem>
+              {this.props.auth.isAuthenticated ? (
+                <NavItem onClick={this.toggleNav} className="ml-2">
+                  <NavLink className="nav-link text-primary" to="/profile">
+                    <span className="fa fa-user-circle-o fa-lg" /> My Profile
                   </NavLink>
                 </NavItem>
-                {this.props.auth.isAuthenticated ? (
+              ) : (
+                <div />
+              )}
+              {this.props.auth.isAuthenticated &&
+              !this.props.auth.userinfo.admin ? (
+                <NavItem onClick={this.toggleNav} className="ml-2">
+                  <NavLink className="nav-link text-primary" to="/history">
+                    <span className="fa fa-history" /> Issue history
+                  </NavLink>
+                </NavItem>
+              ) : (
+                <div />
+              )}
+              {this.props.auth.isAuthenticated &&
+              this.props.auth.userinfo.admin ? (
+                <React.Fragment>
                   <NavItem onClick={this.toggleNav} className="ml-2">
-                    <NavLink className="nav-link text-primary" to="/profile">
-                      <span className="fa fa-user-circle-o fa-lg" /> My Profile
+                    <NavLink className="nav-link text-primary" to="/issue">
+                      <span className="fa fa-plus-square" /> Issue Book
                     </NavLink>
                   </NavItem>
-                ) : (
-                  <div />
-                )}
-                {this.props.auth.isAuthenticated &&
-                !this.props.auth.userinfo.admin ? (
                   <NavItem onClick={this.toggleNav} className="ml-2">
-                    <NavLink className="nav-link text-primary" to="/history">
-                      <span className="fa fa-history" /> Issue history
+                    <NavLink className="nav-link text-primary" to="/return">
+                      <span className="fa fa-list-ul" /> Return Book
                     </NavLink>
                   </NavItem>
+                  <NavItem onClick={this.toggleNav} className="ml-2">
+                    <NavLink className="nav-link text-primary" to="/stats">
+                      <span className="fa fa-info-circle" /> Stats
+                    </NavLink>
+                  </NavItem>
+                </React.Fragment>
+              ) : (
+                <div />
+              )}
+            </Nav>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                {!this.props.auth.isAuthenticated ? (
+                  <Button
+                    outline
+                    className="navigation-btn"
+                    onClick={this.toggleModal}
+                  >
+                    Login <span className="fa fa-sign-in fa-lg"></span>
+                    {this.props.auth.isLoading ? (
+                      <span className="fa fa-spinner fa-pulse fa-fw"></span>
+                    ) : null}
+                  </Button>
                 ) : (
-                  <div />
-                )}
-                {this.props.auth.isAuthenticated &&
-                this.props.auth.userinfo.admin ? (
-                  <React.Fragment>
-                    <NavItem onClick={this.toggleNav} className="ml-2">
-                      <NavLink className="nav-link text-primary" to="/issue">
-                        <span className="fa fa-plus-square" /> Issue Book
-                      </NavLink>
-                    </NavItem>
-                    <NavItem onClick={this.toggleNav} className="ml-2">
-                      <NavLink className="nav-link text-primary" to="/return">
-                        <span className="fa fa-list-ul" /> Return Book
-                      </NavLink>
-                    </NavItem>
-                    <NavItem onClick={this.toggleNav} className="ml-2">
-                      <NavLink className="nav-link text-primary" to="/stats">
-                        <span className="fa fa-info-circle" /> Stats
-                      </NavLink>
-                    </NavItem>
-                  </React.Fragment>
-                ) : (
-                  <div />
-                )}
-              </Nav>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  {!this.props.auth.isAuthenticated ? (
-                    <Button outline color="primary" onClick={this.toggleModal}>
-                      <span className="fa fa-sign-in fa-lg"></span> Login
+                  <div className="second-link">
+                    <div style={{color:"white", fontSize: 15, textShadow:"2px 2px 5px black"}} className="navbar-text mr-3">
+                      {this.props.auth.userinfo.firstname.toUpperCase()}
+                      &nbsp;
+                      {this.props.auth.userinfo.lastname.toUpperCase()}
+                    </div>
+                    <Button
+                      outline
+                      className="navigation-btn"
+                      onClick={this.handleLogout}
+                    >
+                      Logout <span className="fa fa-sign-out fa-lg"></span>
                       {this.props.auth.isLoading ? (
                         <span className="fa fa-spinner fa-pulse fa-fw"></span>
                       ) : null}
                     </Button>
-                  ) : (
-                    <div>
-                      <div className="navbar-text mr-3">
-                        {this.props.auth.user.username}
-                      </div>
-                      <Button
-                        outline
-                        color="primary"
-                        onClick={this.handleLogout}
-                      >
-                        <span className="fa fa-sign-out fa-lg"></span> Logout
-                        {this.props.auth.isLoading ? (
-                          <span className="fa fa-spinner fa-pulse fa-fw"></span>
-                        ) : null}
-                      </Button>
-                    </div>
-                  )}
-
-                  <Registerer
-                    isSignedIn={this.props.auth.isAuthenticated}
-                    toggleRegister={() => {
-                      this.toggleRegister();
-                    }}
-                  />
-                </NavItem>
-              </Nav>
-            </Collapse>
-          </div>
+                  </div>
+                )}
+                <Registerer
+                  isSignedIn={this.props.auth.isAuthenticated}
+                  toggleRegister={() => {
+                    this.toggleRegister();
+                  }}
+                />
+              </NavItem>
+            </Nav>
+          </Collapse>
         </Navbar>
         <Modal
           isOpen={!this.props.auth.isAuthenticated && this.state.isModalOpen}

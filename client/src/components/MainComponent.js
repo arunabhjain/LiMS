@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Header from "./HeaderComponent.js";
-import Footer from "./FooterComponent.js";
 import Home from "./HomeComponent.js";
 import Booklist from "./BooksComponent.js";
 import Search from "./SearchComponent.js";
@@ -42,6 +41,7 @@ import {
   fetchUsers,
 } from "../redux/ActionCreators";
 import { Control, LocalForm, Errors } from "react-redux-form";
+import About from "./AboutComponent.js";
 
 const required = (val) => val && val.length;
 const requiredNum = (val) => !!val;
@@ -248,7 +248,7 @@ class Main extends Component {
       val === defaultName;
 
     return (
-      <div className="App">
+      <Fragment>
         <Header
           auth={this.props.auth}
           loginUser={this.props.loginUser}
@@ -257,6 +257,7 @@ class Main extends Component {
         />
         <Switch location={this.props.location}>
           <Route exact path="/home" component={() => <Home />} />
+          <Route exact path="/about" component={() => <About />} />
           <Route
             exact
             path="/search"
@@ -413,7 +414,6 @@ class Main extends Component {
           />
           <Redirect to="/home" />
         </Switch>
-        <Footer />
         <Modal
           isOpen={this.state.isDeleteModalOpen}
           toggle={this.toggleDeleteModal}
@@ -687,7 +687,7 @@ class Main extends Component {
         ) : (
           <React.Fragment />
         )}
-      </div>
+      </Fragment>
     );
   }
 }

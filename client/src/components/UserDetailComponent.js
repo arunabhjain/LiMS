@@ -55,7 +55,7 @@ class UserDetail extends Component {
                   </h5>
                   <h5>
                     {" "}
-                    {this.props.user.admin ? "Admin Id : " : "Roll No."} :{" "}
+                    {this.props.user.admin ? "Admin ID" : "Roll No."} :{" "}
                     {"          " + this.props.user.roll}
                   </h5>
                   <h5> Email : {"          " + this.props.user.email}</h5>

@@ -1,0 +1,9 @@
+.profile-main {
+    height: calc(100vh - 70px);
+    width: 100% !important;
+    margin-top: -30px !important;
+    background-image: url("../../images/library-3.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+  }

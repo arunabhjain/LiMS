@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./stylesheets/ProfileComponent.css";
 import {
   Card,
   CardBody,
@@ -54,7 +55,7 @@ class Profile extends Component {
       );
     }
     return (
-      <div className="container mt-6 home text-center align-self-center">
+      <div className="profile-main">
         <div className="row text-center justify-content-center">
           <Card className="heading">
             <CardHeader>
@@ -74,7 +75,7 @@ class Profile extends Component {
                 <h5>
                   {" "}
                   {this.props.auth.userinfo.admin
-                    ? "Admin Id : "
+                    ? "Admin ID"
                     : "Roll No."}{" "}
                   : {"          " + this.props.auth.userinfo.roll}
                 </h5>
