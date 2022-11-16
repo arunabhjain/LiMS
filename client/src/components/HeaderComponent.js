@@ -107,7 +107,7 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
           <NavbarBrand className="mr-auto" href="/home">
             <img
-              src="library-logo.jpg"
+              src="library-logo.png"
               height={40}
               alt=""
               className="logo-class"
@@ -126,14 +126,15 @@ class Header extends Component {
                 </NavLink>
               </NavItem>
               {this.props.auth.userinfo && this.props.auth.userinfo.admin ? (
-                <NavItem className="">
+                <NavItem>
                   <Dropdown
                     isOpen={this.state.dropdownOpen}
                     toggle={this.toggle}
                   >
-                    <DropdownToggle color="Primary">
-                      <div className="text-primary">
-                        <span className="fa fa-book fa-lg" /> Books &nbsp;{" "}
+                    <DropdownToggle className="admin-dropdown">
+                      <div className="admin-dropdown-all">
+                        <span className="fa fa-book fa-lg" />
+                        &nbsp;Books &nbsp;
                         <i
                           className="fa fa-caret-down fa-sm"
                           aria-hidden="true"
@@ -146,15 +147,14 @@ class Header extends Component {
                         tag={Link}
                         to="/books"
                       >
-                        View / Modify books
+                        Modify books
                       </DropdownItem>
-                      <DropdownItem divider />
                       <DropdownItem
                         onClick={this.toggleNav}
                         tag={Link}
                         to="/add_book"
                       >
-                        Add book
+                        Add books
                       </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
@@ -229,7 +229,14 @@ class Header extends Component {
                   </Button>
                 ) : (
                   <div className="second-link">
-                    <div style={{color:"white", fontSize: 15, textShadow:"2px 2px 5px black"}} className="navbar-text mr-3">
+                    <div
+                      style={{
+                        color: "white",
+                        fontSize: 15,
+                        textShadow: "2px 2px 5px black",
+                      }}
+                      className="navbar-text mr-3"
+                    >
                       {this.props.auth.userinfo.firstname.toUpperCase()}
                       &nbsp;
                       {this.props.auth.userinfo.lastname.toUpperCase()}

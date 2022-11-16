@@ -5,6 +5,7 @@ function Home() {
   return (
     <div className="homepage-main">
       <div className="dark-bg" />
+      <img src="lims-circle.png" height={300} alt="" />
       <p>
         GyanKund is a very useful library of SKIT that brings together people
         willing to learn. It helps us in learning and expanding our knowledge.

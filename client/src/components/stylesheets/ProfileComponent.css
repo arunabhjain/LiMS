@@ -1,9 +1,22 @@
 .profile-main {
-    height: calc(100vh - 70px);
-    width: 100% !important;
-    margin-top: -30px !important;
-    background-image: url("../../images/library-3.jpg");
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: cover;
-  }
+  height: calc(100vh - 70px);
+  width: 100% !important;
+  margin-top: -30px !important;
+  background-image: url("../../images/library-3.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+
+.dark-bgm {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 100px;
+}
+
