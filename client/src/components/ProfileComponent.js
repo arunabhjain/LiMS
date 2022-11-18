@@ -72,7 +72,7 @@ class Profile extends Component {
                   </h5>
                   <h5>Email : {this.props.auth.userinfo.email}</h5>
                 </CardText>
-                <Button color="info" onClick={this.toggleEditModal}>
+                <Button color="info" onClick={this.toggleEditModal} style={{marginRight:10}}>
                   Edit &nbsp;
                   <span className="fa fa-pencil" />
                 </Button>
