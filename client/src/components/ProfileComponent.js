@@ -64,11 +64,10 @@ class Profile extends Component {
               </CardHeader>
               <CardBody>
                 <CardText style={{ textAlign: "left" }}>
-                  <h5>First Name :{this.props.auth.userinfo.firstname}</h5>
-                  <h5>Last Name :{this.props.auth.userinfo.lastname}</h5>
+                  <h5>First Name : {this.props.auth.userinfo.firstname}</h5>
+                  <h5>Last Name : {this.props.auth.userinfo.lastname}</h5>
                   <h5>
-                    {this.props.auth.userinfo.admin ? "Admin ID" : "Roll No."} :
-                    {this.props.auth.userinfo.roll}
+                    {this.props.auth.userinfo.admin ? "Admin ID" : "Roll No."} : {this.props.auth.userinfo.roll}
                   </h5>
                   <h5>Email : {this.props.auth.userinfo.email}</h5>
                 </CardText>
