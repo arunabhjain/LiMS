@@ -1,6 +1,6 @@
 {
   "name": "lims",
-  "homepage": "https://lims.vercel.app",
+  "homepage": "https://lims-two.vercel.app",
   "version": "1.0.0",
   "description": "Library Management Website using MERN stack",
   "main": "server.js",
