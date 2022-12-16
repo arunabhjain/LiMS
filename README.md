@@ -1,6 +1,6 @@
 # Library Management System (LiMS)
 
-A web app for the management of books, users and the Issue and Return of Books in a library.
+A web app for the management of books, users and the Issue and Return of Books in SKIT library.
 
 ## User Permissions
 
