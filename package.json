@@ -1,5 +1,6 @@
 {
-  "name": "lib_management",
+  "name": "lims",
+  "homepage": "https://lims.vercel.app",
   "version": "1.0.0",
   "description": "Library Management Website using MERN stack",
   "main": "server.js",

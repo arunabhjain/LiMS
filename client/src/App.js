@@ -12,7 +12,7 @@ const store = ConfigureStore();
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
           <Main />
       </BrowserRouter>
     </Provider>
